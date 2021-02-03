@@ -29,23 +29,46 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ## For Charts 
 
 Instantiate chart using am4Charts.create method which takes the div id where chart needs to be created and Chart Type
+
+
 `let chart = am4core.create("donut-chart-div", am4charts.PieChart);`
+
+
 Add and configure Series by pushing into charts series array
+
+
 `let pieSeries = chart.series.push(new am4charts.PieSeries());
+
 pieSeries.dataFields.value = "litres"; // Key
+
 pieSeries.dataFields.category = "country"; // Value`
+
+
 Series has slices instance which further has template. Whatever property you set on template will be applied on actual slices.
+
 `pieSeries.slices.template.stroke = am4core.color("#4a2abb");
+
 pieSeries.slices.template.strokeWidth = 2;
+
 pieSeries.slices.template.strokeOpacity = 1;`
+
+
 You can bind any property that is in the JSON chart data to chart properties eg color
+
 `pieSeries.slices.template.propertyFields.fill = "color";`
+
 You can play with different states of a slice eg On Slice Hover/Active you can do some stuff
+
 `let hs = pieSeries.slices.template.states.getKey("hover");
+
 hs.properties.scale = 1.1;
+
 hs.properties.fillOpacity = 0.5;`
 
 `let as = pieSeries.slices.template.states.getKey("active");
+
 as.properties.shiftRadius = 0.1;`
+
 You can set/modify the labels. All the properties JSON data passed to the chart can be used for that
+
 `pieSeries.labels.template.text = "Value for {category} is {value.value}";`
