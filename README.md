@@ -37,20 +37,20 @@ Instantiate chart using am4Charts.create method which takes the div id where cha
 Add and configure Series by pushing into charts series array
 
 
-`let pieSeries = chart.series.push(new am4charts.PieSeries());
+`let pieSeries = chart.series.push(new am4charts.PieSeries());`
 
-pieSeries.dataFields.value = "litres"; // Key
+`pieSeries.dataFields.value = "litres"; // Key`
 
-pieSeries.dataFields.category = "country"; // Value`
+`pieSeries.dataFields.category = "country"; // Value`
 
 
 Series has slices instance which further has template. Whatever property you set on template will be applied on actual slices.
 
-`pieSeries.slices.template.stroke = am4core.color("#4a2abb");
+`pieSeries.slices.template.stroke = am4core.color("#4a2abb");`
 
-pieSeries.slices.template.strokeWidth = 2;
+`pieSeries.slices.template.strokeWidth = 2;`
 
-pieSeries.slices.template.strokeOpacity = 1;`
+`pieSeries.slices.template.strokeOpacity = 1;`
 
 
 You can bind any property that is in the JSON chart data to chart properties eg color
@@ -59,15 +59,15 @@ You can bind any property that is in the JSON chart data to chart properties eg 
 
 You can play with different states of a slice eg On Slice Hover/Active you can do some stuff
 
-`let hs = pieSeries.slices.template.states.getKey("hover");
+`let hs = pieSeries.slices.template.states.getKey("hover");`
 
-hs.properties.scale = 1.1;
+`hs.properties.scale = 1.1;`
 
-hs.properties.fillOpacity = 0.5;`
+`hs.properties.fillOpacity = 0.5;`
 
-`let as = pieSeries.slices.template.states.getKey("active");
+`let as = pieSeries.slices.template.states.getKey("active");`
 
-as.properties.shiftRadius = 0.1;`
+`as.properties.shiftRadius = 0.1;`
 
 You can set/modify the labels. All the properties JSON data passed to the chart can be used for that
 
