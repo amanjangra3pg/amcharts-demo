@@ -1,0 +1,154 @@
+<div id="parent">
+    <div id="nav-bar">
+        <div id="tabs-container">
+            <div *ngFor="let tab of tabs" [ngClass]="(currentTab==tab)?'active':''" class="tab"
+                (click)="switchTab(tab)">
+                <p>{{tab}}</p>
+            </div>
+        </div>
+    </div>
+    <div id="tab-data">
+        <div id="intro" class="tab-data" style="display: block;" *ngIf="currentTab=='Introduction'">
+            <div style="display: inline-flex;">
+                <div>
+                    <h4>Latest Version amcharts 4 is built in Typescript<br>Prerequisite : npm and angular installed
+                    </h4>
+                    <ul id="list">
+                        <li class="list-item">Build a new angular project using <br><i> ng new my-project-name</i></li>
+                        <li class="list-item">In projects root directory run the following command <br> <i>npm install
+                                @amcharts/amcharts4</i></li>
+                        <li class="list-item">Create a new Component using <br> <i>ng g component charts</i></li>
+                        <li class="list-item">Import library using <br> <i>import * as am4core from
+                                '@amcharts/amcharts4/core';
+                                <br>import * as am4charts from '@amcharts/amcharts4/charts';</i></li>
+                        <li class="list-item">All the methods and library will be accessible now within your component
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>To get this project up and running</h4>
+                    <ul>
+                        <li>Extract the project zip file into some folder</li>
+                        <li>From the root of the project run command <br><i>npm install</i><br>It will download all the
+                            dependecies viz. amcharts library</li>
+                        <li>Once the dependencies are installed you are good to go. Run from project root <br> <i>ng serve
+                                --port 9999</i></li>
+                        <li>Access the app using URL <br><i>localhost:9999</i></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        <div id="pie" *ngIf="currentTab=='Pie'" class="tab-data">
+            <div class="chart-div" id="pie-chart-div"></div>
+            <div class="chart-details">
+                <ul id="list-details">
+                    <li class="list-item">
+                        Instantiate chart using <i>am4Charts.create</i> method which takes the div id
+                        where chart needs to be created and Chart Type <br> <i>let chart =
+                            am4core.create("donut-chart-div", am4charts.PieChart);</i>
+                    </li>
+                    <li class="list-item">
+                        Add and configure Series by pushing into charts series array
+                        <br><i> let pieSeries = chart.series.push(new am4charts.PieSeries());
+                            <br> pieSeries.dataFields.value = "litres"; // Key
+                            <br> pieSeries.dataFields.category = "country"; // Value</i>
+                    </li>
+                    <li class="list-item">
+                        Series has slices instance which further has template. Whatever property you set on template
+                        will be applied on actual slices.<br>
+                        <i> pieSeries.slices.template.stroke = am4core.color("#4a2abb");<br>
+                            pieSeries.slices.template.strokeWidth = 2;<br>
+                            pieSeries.slices.template.strokeOpacity = 1;</i>
+                    </li>
+                    <li class="list-item">
+                        You can bind any property that is in the JSON chart data to chart properties eg color<br>
+                        <i>pieSeries.slices.template.propertyFields.fill = "color";</i>
+                    </li>
+                    <li class="list-item">
+                        You can play with different states of a slice eg On Slice Hover/Active you can do some stuff<br>
+                        <i>
+                            let hs = pieSeries.slices.template.states.getKey("hover");<br>
+                            hs.properties.scale = 1.1;<br>
+                            hs.properties.fillOpacity = 0.5;<br>
+                            <br>
+                            let as = pieSeries.slices.template.states.getKey("active");<br>
+                            as.properties.shiftRadius = 0.1;<br>
+                        </i>
+                    </li>
+                    <li class="list-items">
+                        You can set/modify the labels. All the properties JSON data passed to the chart can be used for
+                        that<br>
+                        <i>
+                            pieSeries.labels.template.text = "Value for &#123;category&#125; is
+                            &#123;value.value&#125;";
+                        </i>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+        <div id="bar" class="tab-data" *ngIf="currentTab=='Bar'">
+            <div class="chart-div" id="bar-chart-div"></div>
+            <div class="chart-details"></div>
+        </div>
+        <div id="line" class="tab-data" *ngIf="currentTab=='Line'">
+            <div class="chart-div" id="line-chart-div"></div>
+            <div class="chart-details"></div>
+        </div>
+        <div id="donut" class="tab-data" *ngIf="currentTab=='Donut'">
+            <div class="chart-div" id="donut-chart-div"></div>
+            <div class="chart-details">
+                <ul id="list-details">
+                    <li class="list-item">
+                        Instantiate chart using <i>am4Charts.create</i> method which takes the div id
+                        where chart needs to be created and Chart Type <br> <i>let chart =
+                            am4core.create("donut-chart-div", am4charts.PieChart);</i>
+                    </li>
+                    <li class="list-item">
+                        Add and configure Series by pushing into charts series array
+                        <br><i> let pieSeries = chart.series.push(new am4charts.PieSeries());
+                            <br> pieSeries.dataFields.value = "litres"; // Key
+                            <br> pieSeries.dataFields.category = "country"; // Value</i>
+                    </li>
+
+                    <li class="list-items">
+                        Convert Pie Chart to Donut<br>
+                        <i style="color: yellow;">chart.innerRadius = am4core.percent(40);</i>
+                    </li>
+                    <li class="list-item">
+                        Series has slices instance which further has template. Whatever property you set on template
+                        will be applied on actual slices.<br>
+                        <i> pieSeries.slices.template.stroke = am4core.color("#4a2abb");<br>
+                            pieSeries.slices.template.strokeWidth = 2;<br>
+                            pieSeries.slices.template.strokeOpacity = 1;</i>
+                    </li>
+                    <li class="list-item">
+                        You can bind any property that is in the JSON chart data to chart properties eg color<br>
+                        <i>pieSeries.slices.template.propertyFields.fill = "color";</i>
+                    </li>
+                    <li class="list-item">
+                        You can play with different states of a slice eg On Slice Hover/Active you can do some stuff<br>
+                        <i>
+                            let hs = pieSeries.slices.template.states.getKey("hover");<br>
+                            hs.properties.scale = 1.1;<br>
+                            hs.properties.fillOpacity = 0.5;<br>
+                            <br>
+                            let as = pieSeries.slices.template.states.getKey("active");<br>
+                            as.properties.shiftRadius = 0.1;<br>
+                        </i>
+                    </li>
+                    <li class="list-items">
+                        You can set/modify the labels. All the properties JSON data passed to the chart can be used for
+                        that<br>
+                        <i>
+                            pieSeries.labels.template.text = "Value for &#123;category&#125; is
+                            &#123;value.value&#125;";
+                        </i>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
